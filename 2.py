@@ -14,9 +14,3 @@ try:
 except ValueError:
     print("Будь ласка, введіть ціле число.")
 
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        file_name = sys.argv[1]
-    else:
-        file_name = None
-
