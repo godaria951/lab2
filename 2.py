@@ -1,26 +1,18 @@
-import os
-import sys
-from unittest import TestCase, main
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        a, b = 0, 1
+        for _ in range(n - 1):
+            a, b = b, a + b
+        return b
 
-def get_file_path(file_name):
-    if not file_name:
-        print("Error: File name not provided.", file=sys.stderr)
-        return 1
-
-    file_path = os.path.abspath(file_name)
-    if not os.path.isfile(file_path):
-        print(f"Error: File '{file_name}' not found.", file=sys.stderr)
-        return 2
-
-    print(file_path)
-    return 0
-
-class TestGetFilePath(TestCase):
-    def test_existing_file(self):
-        self.assertEqual(get_file_path(__file__), 0)
-
-    def test_nonexistent_file(self):
-        self.assertNotEqual(get_file_path("nonexistent.txt"), 0)
+try:
+    n = int(input("Введіть число n: "))
+    result = fibonacci(n)
+    print(f"Число Фібоначчі для {n} дорівнює {result}")
+except ValueError:
+    print("Будь ласка, введіть ціле число.")
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
