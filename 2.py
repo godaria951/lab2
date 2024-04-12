@@ -20,4 +20,3 @@ if __name__ == "__main__":
     else:
         file_name = None
 
-    sys.exit(get_file_path(file_name))
