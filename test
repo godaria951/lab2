@@ -1,0 +1,21 @@
+import subprocess
+
+def test_fibonacci():
+    # Тест на правильність виводу
+    process = subprocess.Popen(['python', 'iswearivedoneitmyself.py'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    stdout, _ = process.communicate(input=b'10\n')
+    assert stdout.decode() == "Число Фібоначчі для 10 дорівнює 55\n"
+
+    # Тест на помилку вводу
+    process = subprocess.Popen(['python', 'iswearivedoneitmyself.py'], stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+    _, stderr = process.communicate(input=b'not_a_number\n')
+    assert stderr.decode() == "Будь ласка, введіть ціле число.\n"
+    assert process.returncode == 1
+
+    # Тест на відсутність вводу
+    process = subprocess.Popen(['python', 'iswearivedoneitmyself.py'], stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+    _, stderr = process.communicate(input=b'\n')
+    assert stderr.decode() == "Будь ласка, введіть ціле число.\n"
+    assert process.returncode == 1
+
+test_fibonacci()
