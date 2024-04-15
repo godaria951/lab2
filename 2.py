@@ -1,3 +1,5 @@
+import sys
+
 def fibonacci(n):
     if n <= 1:
         return n
@@ -8,9 +10,11 @@ def fibonacci(n):
         return b
 
 try:
-    n = int(input("Введіть число n: "))
+    n = int(sys.stdin.readline())
     result = fibonacci(n)
     print(f"Число Фібоначчі для {n} дорівнює {result}")
 except ValueError:
-    print("Будь ласка, введіть ціле число.")
+    sys.stderr.write("Будь ласка, введіть ціле число.\n")
+    sys.exit(1)
+
 
